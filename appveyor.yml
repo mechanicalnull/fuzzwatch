@@ -1,0 +1,19 @@
+# appveyor.yml
+---
+environment:
+  matrix:
+    - PYTHONENV: "C:\\Python27"
+    - PYTHONENV: "C:\\Python37"
+
+build: off
+
+install:
+  - "%PYTHONENV%/Scripts/pip.exe install psutil pywin32"
+
+test_script:
+  - "%PYTHONENV%/python.exe --version"
+  - "%PYTHONENV%/python.exe unit_tests.py"
+  - "mkdir in"
+  - "echo AAAAA > in/test"
+  - "mkdir out"
+  - "%PYTHONENV%/python.exe manul_test.py"

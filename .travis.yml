@@ -1,0 +1,22 @@
+language:
+  - python
+
+# Disable sudo to speed up the build
+sudo: false
+
+os: linux
+
+python: 
+   - 2.7
+   - 3.7
+
+install:
+   - pip install psutil
+
+script:
+  - python unit_tests.py
+  - mkdir in
+  - echo AAAAA > in/test
+  - mkdir out
+  - python manul_test.py
+  - ls out/0/crashes/
