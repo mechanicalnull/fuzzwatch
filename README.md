@@ -26,13 +26,22 @@ Scripts for building and running example targets are included:
 
 ## Installing
 
-There shouldn't be many non-Python dependencies of Fuzzwatch itself, but a
-Dockerfile is included to show a clean Ubuntu build.
+```python
+pip install -r requirements.txt
+```
 
-If you want to run Fuzzwatch from inside the container, you'll need to pass an
-X11 unix socket into the container and disable access control. There are other
-access mechanisms in the xhost manpage, but for compatibility and ease-of-use,
-we disable it in this example.
+That should be it.
+
+Docker *is not* a requirement, but a Dockerfile is included to show a clean
+Ubuntu build.
+
+If you want to run Fuzzwatch from inside a docker container, you'll need a way
+to forward the GUI window to your host. One way is to pass an X11 unix socket
+into the container and disable access control. There are other access mechanisms
+in the xhost manpage, but for compatibility and ease-of-use, we disable it in
+example below (WARNING: doing so a
+[security risk](https://www.nikhef.nl/~mjg/xhost_plus.html) for multi-user
+systems).
 
 ```bash
 xhost +
@@ -43,6 +52,7 @@ docker run -it --rm \
     mechanicalnull/fuzzwatch ./run_fuzzwatch_fuzztest.sh
 xhost -
 ```
+
 ## About Fuzzwatch
 
 Fuzzwatch is strictly for demonstration/learning purposes. Fuzzers don't
